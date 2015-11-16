@@ -13,11 +13,28 @@ Quels qu'ils soient, un jour, après s'être laissé buriner par les embruns sal
 
 echo $dictee . '<br />';
 
+  // remplacer les virgules et autres petits caract
+$dictee =  str_replace ( '! ', ' ', $dictee);
+$dictee =  str_replace ( ', ', ' ', $dictee);
+$dictee =  str_replace ( '\'', ' ', $dictee);
+$dictee =  str_replace ( ' \' ', ' ', $dictee);
+$dictee =  str_replace ( '.', ' ', $dictee);
+$dictee =  str_replace ( '\r', ' ', $dictee);
+$dictee =  str_replace ( '\n', ' ', $dictee);
+$dictee =  str_replace ( '\r\n', ' ', $dictee);
+$dictee =  str_replace ( '\t', ' ', $dictee);
+$dictee =  str_replace ( '\x0a', ' ', $dictee);
+
+
+echo $dictee . '<br />';
+
+
 //creation fonction
 function extraire_mots( $texte, $longueur_mot )
 {
   $dictionnaire = explode(' ', $texte);
   echo "<p>Le texte contient " . count($dictionnaire) . "caractères en tout.</p>";
+
 
   // explode m'a créé un tableau, maintenant je veux parcourir ce tableau
   foreach ($dictionnaire as $mot) {
@@ -30,6 +47,7 @@ function extraire_mots( $texte, $longueur_mot )
   // on renvoie le résultat de la fonction
   return $array_mot;
 }
+
 
 //appel fonction
 $mon_dico = extraire_mots( $dictee, 5 );
