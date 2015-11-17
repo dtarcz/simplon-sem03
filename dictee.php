@@ -31,22 +31,21 @@ echo '<p>' . nettoyage($dictee) . '</p>'; // OK
 //creation fonction extraire-mots
 function extraire_mots( $texte, $longueur_mot=5 )
 {
-  $dictionnaire = explode(' ', $texte);
+  $dictionnaire = explode(' ', $texte);  // explode m'a créé un tableau, maintenant je veux parcourir ce tableau
+
   echo "<p>Le texte contient " . count($dictionnaire) . "caractères en tout.</p>";
 
+  $array_mot = array(); // déclaration d'un tabeau avant de l'utiliser
 
-  // explode m'a créé un tableau, maintenant je veux parcourir ce tableau
   foreach ($dictionnaire as $mot) {
     # code...
     if (strlen($mot) >= $longueur_mot) {
-      # code...
       $array_mot[] = $mot;
     }
   }
   // on renvoie le résultat de la fonction
   return $array_mot;
 }
-
 
 //appel fonction
 $mon_dico = extraire_mots( nettoyage($dictee), 5 );
