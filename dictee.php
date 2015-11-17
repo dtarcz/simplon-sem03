@@ -11,26 +11,25 @@ Que n'auraient-ils donné alors pour rallier les atolls ensoleillés du Pacifiqu
 
 Quels qu'ils soient, un jour, après s'être laissé buriner par les embruns salés et s'être mesurés à la force des flots lors des courses transocéaniques, hantés par l'inénarrable aventure des mers, ils ont retrouvé la terre ferme.";
 
-echo $dictee . '<br />';
+echo '<p>' . $dictee . '</p>';
 
-  // remplacer les virgules et autres petits caract
-$dictee =  str_replace ( '! ', ' ', $dictee);
-$dictee =  str_replace ( ', ', ' ', $dictee);
-$dictee =  str_replace ( '\'', ' ', $dictee);
-$dictee =  str_replace ( ' \' ', ' ', $dictee);
-$dictee =  str_replace ( '.', ' ', $dictee);
-$dictee =  str_replace ( '\r', ' ', $dictee);
-$dictee =  str_replace ( '\n', ' ', $dictee);
-$dictee =  str_replace ( '\r\n', ' ', $dictee);
-$dictee =  str_replace ( '\t', ' ', $dictee);
-$dictee =  str_replace ( '\x0a', ' ', $dictee);
+// creation fonction nettoyage du texte pour remplacer les virgules et autres petits caract
+function nettoyage($texte_a_nettoyer) {
+  $search = array(' ', "\t", "\n", "\r");
+  $texte = str_replace($search, ' ', $texte_a_nettoyer);
+  $texte =  str_replace ( '! ', ' ', $texte);
+  $texte =  str_replace ( ', ', ' ', $texte);
+  $texte =  str_replace ( '\'', ' ', $texte);
+  $texte =  str_replace ( ' \' ', ' ', $texte);
+  $texte =  str_replace ( '.', ' ', $texte);
+//  $texte =  str_replace ( '\x0a', ' ', $texte);
+  return $texte;
+}
+// pour voir le résultat, appeller la fonction sur la dictée
+echo '<p>' . nettoyage($dictee) . '</p>'; // OK
 
-
-echo $dictee . '<br />';
-
-
-//creation fonction
-function extraire_mots( $texte, $longueur_mot )
+//creation fonction extraire-mots
+function extraire_mots( $texte, $longueur_mot=5 )
 {
   $dictionnaire = explode(' ', $texte);
   echo "<p>Le texte contient " . count($dictionnaire) . "caractères en tout.</p>";
@@ -50,13 +49,13 @@ function extraire_mots( $texte, $longueur_mot )
 
 
 //appel fonction
-$mon_dico = extraire_mots( $dictee, 5 );
+$mon_dico = extraire_mots( nettoyage($dictee), 5 );
 
 echo "<br />";
 
 foreach ($mon_dico as $mot_dico) {
   # code...
-  echo $mot_dico . "<br>";
+  echo $mot_dico . "<br />";
 }
 
 ?>
