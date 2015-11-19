@@ -23,7 +23,16 @@ if (/[aeiouy]/i.test(phrase)) {
 var strSaisie = prompt("Saisir une phrase");
 
 var tabVoyelles = ["a", "e", "i", "o", "u", "y"];
+var intCptVoyelles = 0;
 
 for (var i = 0; i < strSaisie.length; i++) {
-  console.log(strSaisie.substring(i, i+1));
+  // console.log(strSaisie.substring(i, i+1));
+  var charLettre = strSaisie.substring(i, i+1);
+
+  for (var j = 0; j < tabVoyelles.length; j++) {
+    if (charLettre == tabVoyelles[j]) {
+      console.log(charLettre + " est une voyelle.");
+      intCptVoyelles++;
+    }
+  }
 }
